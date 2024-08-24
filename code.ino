@@ -1,7 +1,7 @@
 #include <LiquidCrystal.h>
 
 // Over and Fan pins
-const int OVER_PIN = 7;
+const int OVEN_PIN = 7;
 const int FAN_PIN = 4;
 
 // Temprature pins and vars
@@ -25,7 +25,7 @@ LiquidCrystal lcd(13, 12, 11, 10, 9, 8);
 
 void setup() {
   // Over and Fan pin mode
-  pinMode(OVER_PIN, OUTPUT);
+  pinMode(OVEN_PIN, OUTPUT);
   pinMode(FAN_PIN, OUTPUT);
 
   // lcd x, y
@@ -69,7 +69,7 @@ void loop() {
   
   // Temp is 75.0 (-/+ .5) by trun on/off heater and fan
   if (temp < 37.0) {
-    digitalWrite(OVER_PIN, HIGH);
+    digitalWrite(OVEN_PIN, HIGH);
     lcd.setCursor(12, 1);
     lcd.print("ON "); 
   } else if (temp > 38.0) {
@@ -77,7 +77,7 @@ void loop() {
     lcd.setCursor(15, 1);
     lcd.print("ON ");
   } else {
-    digitalWrite(OVER_PIN, LOW);
+    digitalWrite(OVEN_PIN, LOW);
     digitalWrite(FAN_PIN, LOW);
     lcd.setCursor(12, 1);
     lcd.print("OFF");
@@ -87,15 +87,15 @@ void loop() {
 
   // Humi is between 55:65 by turn on/off heater
   if (humi < 55.0) {
-    digitalWrite(OVER_PIN, HIGH);
+    digitalWrite(OVEN_PIN, HIGH);
     lcd.setCursor(12, 1);
     lcd.print("ON "); 
   } else if (humi > 65.0) {
-    digitalWrite(OVER_PIN, LOW);
+    digitalWrite(OVEN_PIN, LOW);
     lcd.setCursor(12, 1);
     lcd.print("OFF");
   } else {
-    digitalWrite(OVER_PIN, LOW);
+    digitalWrite(OVEN_PIN, LOW);
     lcd.setCursor(12, 1);
     lcd.print("OFF");
   }
